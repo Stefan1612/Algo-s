@@ -1,5 +1,5 @@
 // -----------------------------------
-// High level version of stack using arrays
+// Low level version of stack using arrays
 // -----------------------------------
 
 class Stack {
