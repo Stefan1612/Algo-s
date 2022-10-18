@@ -16,6 +16,7 @@ function fib(n) {
 
   function helper(n) {
     if (n in memorize) return memorize[n];
+      //this might be n < 2
     if (n < 3) return 1;
     return memorize[n] = helper(n - 1) + helper(n - 2);
   }
