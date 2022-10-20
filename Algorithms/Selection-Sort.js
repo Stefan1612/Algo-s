@@ -25,3 +25,5 @@ function selectionSort(array){
 
   return sortedArray
 }
+
+//this is a pure function because it doesn't mutate the original array
