@@ -5,3 +5,4 @@
 
 ## Leetcode questions I personaly struggled with [easy - medium only]
 
+- space and time complexity, as well as optimization
