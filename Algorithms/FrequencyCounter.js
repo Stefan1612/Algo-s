@@ -94,10 +94,46 @@ function validAnagram(firstStr, secondStr) {
   if (firstStr.length !== secondStr.length) {
     return false;
   }
-  let secondStrArray = 
+  let secondStrArray = secondStr.split("");
   for (let i = 0; i < firstStr.length; i++) {
-    if (secondStr.indexOf(firstStr[i])) {
-      secondStr.splice(firstStr[i], 1);
+    if (secondStrArray.indexOf(firstStr[i]) > -1) {
+      secondStrArray.splice(secondStrArray.indexOf(firstStr[i]), 1);
+    } else {
+      return false;
+    }
+  }
+
+  /**
+   * declare map object
+   * check if length equal
+   * loop through firstStr
+   * check if firstStr[i] already inside map object
+   * if YES => map[firstStr[i]]++
+   * if NO => map[firstStr[i]] = 1
+   *
+   * loop through secondStr
+   * check if map[secondStr[i]] > 0
+   * if YES => map[secondStr[i]]--
+   * if NO => return false
+   */
+
+  let map = {};
+
+  if (firstStr.length !== secondStr.length) {
+    return false;
+  }
+
+  for (let i = 0; i < firstStr.length; i++) {
+    if (map[firstStr[i]]) {
+      map[firstStr[i]]++;
+    } else {
+      map[firstStr[i]] = 1;
+    }
+  }
+
+  for (let j = 0; j < secondStr.length; j++) {
+    if (map[secondStr[j]] > 0) {
+      map[secondStr[j]]--;
     } else {
       return false;
     }
@@ -112,4 +148,4 @@ console.log(validAnagram("anagram", "nagaram"));
 console.log(validAnagram("rat", "car"));
 console.log(validAnagram("awesome", "awesom"));
 console.log(validAnagram("qwerty", "qeywrt"));
-console.log(validAnagram("testtwisttime", "timetwisttext"));
+console.log(validAnagram("texttwisttime", "timetwisttext"));
