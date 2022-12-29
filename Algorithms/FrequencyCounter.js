@@ -43,7 +43,7 @@ function same(values, results) {
     return false;
   }
 
-  let map = {};
+  const map = {};
 
   for (let i = 0; i < values.length; i++) {
     let tempRes = values[i] * values[i];
@@ -117,7 +117,7 @@ function validAnagram(firstStr, secondStr) {
    * if NO => return false
    */
 
-  let map = {};
+  const map = {};
 
   if (firstStr.length !== secondStr.length) {
     return false;
