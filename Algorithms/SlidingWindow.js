@@ -49,6 +49,10 @@ function maxSubarraySumTwo(intArray, n) {
    * let temp = subArray - intArray[i - num] + intArray[i]
    * let maxSum = Math.Max(temp, SubArray)
    * return maxSum
+   *
+   * complexity:
+   * space: o(1)
+   * runtime: o(n)
    */
 
   if (intArray.length < n) {
