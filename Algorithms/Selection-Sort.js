@@ -8,9 +8,11 @@ function selectionSort(array) {
         highest = j;
       }
     }
-    temp = array[i];
-    array[i] = array[highest];
-    array[highest] = temp;
+    if (highest !== i) {
+      temp = array[i];
+      array[i] = array[highest];
+      array[highest] = temp;
+    }
   }
 
   return array;
@@ -47,3 +49,10 @@ console.log(goodSelectionSort([1, 31, 312, 12, 31, 3, 23]));
 console.log(goodSelectionSort([1, 2, 11, 15, 14]));
 console.log(selectionSort([1, 31, 312, 12, 31, 3, 23]));
 console.log(selectionSort([1, 2, 11, 15, 14]));
+
+/**
+ * The only case where selection sort would be used over bubble sort is when you need something less memory heavy (bubble sort swaps way more than selection sort)
+ *
+ *
+ *
+ */

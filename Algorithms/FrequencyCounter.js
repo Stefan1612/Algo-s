@@ -142,10 +142,145 @@ function validAnagram(firstStr, secondStr) {
   return true;
 }
 
-console.log(validAnagram("", ""));
+/* console.log(validAnagram("", ""));
 console.log(validAnagram("aaz", "zza"));
 console.log(validAnagram("anagram", "nagaram"));
 console.log(validAnagram("rat", "car"));
 console.log(validAnagram("awesome", "awesom"));
 console.log(validAnagram("qwerty", "qeywrt"));
 console.log(validAnagram("texttwisttime", "timetwisttext"));
+ */
+
+/**
+ * Write a function called console.log(sameFrequency. Given two positive integers, find out if the two numbers have the same frequency of digits.
+    console.log(sameFrequency(182,281) // true
+console.log(sameFrequency(34,14) // false
+console.log(sameFrequency(3589578, 5879385) // true
+console.log(sameFrequency(22,222) // false
+ */
+
+function sameFrequency(num1, num2) {
+  /**
+   * questions: what if array1.length !== array2.length
+   *
+   *
+   *
+   * for(num1)
+   *    -> for(num2)
+   *        -> check if num1[i] === num2[j]
+   *            -> if YES => remove num[i] and num2[j]
+   *                          break;
+   *              -> if NO => return false
+   *
+   * /////
+   * if(num1.length !==  0 && num2.length 1== 0){
+   *      return false
+   * }
+   *
+   * return true
+   *
+   * complexity:
+   * runtime: o(n^2)
+   * space: o(1)
+   *
+   * ////////////////////////////////////
+   * second solution
+   * runtime complexity: o(n)
+   * space complexity: o(n)
+   *
+   * let map = {}
+   *
+   * for(num1){
+   * map[num1[i]] += 1
+   * }
+   *
+   *
+   * for(num2)
+   *  map[num1[i]] -= 1
+   *
+   *
+   * for (const property in map) {
+   *  check if(property !== 0){
+   * return false}
+   * }
+   *
+   * return true
+   */
+
+  let map = {};
+  let string1 = num1.toString();
+  let string2 = num2.toString();
+
+  for (let i = 0; i < string1.length; i++) {
+    if (!map[string1[i]]) {
+      map[string1[i]] = 1;
+    } else {
+      map[string1[i]] += 1;
+    }
+  }
+
+  for (let j = 0; j < string2.length; j++) {
+    map[string2[j]] -= 1;
+  }
+  for ([key, value] of Object.entries(map)) {
+    if (value !== 0) {
+      return false;
+    }
+  }
+  /*  for (let s = 0; s < string1.length; s++) {
+    if (map[string1[s]] !== 0) {
+      return false;
+    }
+  } */
+  return true;
+}
+
+/* console.log(sameFrequency(132, 321)); // true
+console.log(sameFrequency(182, 281)); // true
+console.log(sameFrequency(34, 14)); // false
+console.log(sameFrequency(3589578, 5879385)); // true
+console.log(sameFrequency(22, 222)); // false */
+
+/**
+ * Implement a function called, areThereDuplicates which accepts a variable number of arguments, and checks whether there are any duplicates among the arguments passed in.  You can solve this using the frequency counter pattern OR the multiple pointers pattern.
+ * 
+ * areThereDuplicates(1, 2, 3) // false
+areThereDuplicates(1, 2, 2) // true 
+areThereDuplicates('a', 'b', 'c', 'a') // true 
+ * 
+ */
+/**
+ *
+ * the arguments keyword as well as the ...arg (rest parameter) can be used to identify an infinit amount of arguments (they will be listed array like afterwards)
+ */
+function areThereDuplicates() {
+  let collection = {};
+
+  for (let i = 0; i < arguments.length; i++) {
+    if (collection[arguments[i]]) {
+      return true;
+    }
+    collection[arguments[i]] = 1;
+  }
+
+  return false;
+}
+function areThereDuplicates(...theArgs) {
+  let collection = {};
+
+  for (let i = 0; i < theArgs.length; i++) {
+    if (collection[theArgs[i]]) {
+      return true;
+    }
+    collection[theArgs[i]] = 1;
+  }
+
+  return false;
+}
+// using a set
+function areThereDuplicates() {
+  return new Set(arguments).size !== arguments.length;
+}
+console.log(areThereDuplicates(1, 2, 3)); // false
+console.log(areThereDuplicates(1, 2, 2)); // true
+console.log(areThereDuplicates("a", "b", "c", "a")); // true
