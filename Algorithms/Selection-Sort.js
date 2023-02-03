@@ -52,7 +52,4 @@ console.log(selectionSort([1, 2, 11, 15, 14]));
 
 /**
  * The only case where selection sort would be used over bubble sort is when you need something less memory heavy (bubble sort swaps way more than selection sort)
- *
- *
- *
  */
