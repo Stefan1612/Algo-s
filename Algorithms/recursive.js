@@ -221,8 +221,59 @@ function isPalindrome(string) {
   return false;
 }
 
-console.log(isPalindrome("awesome")); // false
+/* console.log(isPalindrome("awesome")); // false
 console.log(isPalindrome("foobar")); // false
 console.log(isPalindrome("tacocat")); // true
 console.log(isPalindrome("amanaplanacanalpanama")); // true
-console.log(isPalindrome("amanaplanacanalpandemonium")); // false
+console.log(isPalindrome("amanaplanacanalpandemonium")); // false */
+
+/**
+ * Write a recursive function called someRecursive which accepts an array and a callback. The function returns true if a single value in the array returns true when passed to the callback. Otherwise it returns false.
+ */
+function isOdd(val) {
+  return val % 2 !== 0;
+}
+function someRecursive(array, callback) {
+  if (array.length === 0) {
+    return false;
+  }
+  if (callback(array[0])) {
+    return true;
+  }
+  return someRecursive(array.slice(1, array.length), callback);
+}
+
+/* console.log(someRecursive([1, 2, 3, 4], isOdd)); // true
+console.log(someRecursive([4, 6, 8, 9], isOdd)); // true
+console.log(someRecursive([4, 6, 8], isOdd)); // false
+console.log(someRecursive([4, 6, 8], (val) => val > 10)); // false */
+
+/**
+ * Write a recursive function called flatten which accepts an array of arrays and returns a new array with all values flattened.
+ */
+function flatten(array) {
+  /**
+   * base case:
+   *
+   *
+   */
+  let newArray = [];
+
+  function helper(arrayOne) {
+    if (arrayOne.length === 0) {
+      return;
+    }
+    if (/* arrayOne[0].length > 1 */ Array.isArray(arrayOne[0])) {
+      helper(arrayOne[0].concat(arrayOne.slice(1, arrayOne.length)));
+    } else {
+      newArray.push(arrayOne[0]);
+      helper(arrayOne.slice(1, arrayOne.length));
+    }
+  }
+  helper(array);
+  return newArray;
+}
+console.log(flatten([1, 2, 3, [4, 5]])); // [1, 2, 3, 4, 5]
+console.log(flatten([1, [2, [3, 4], [[5]]]])); // [1, 2, 3, 4, 5]
+console.log(flatten([[1], [2], [3]])); // [1,2,3]
+console.log(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])); // [1,2,3
